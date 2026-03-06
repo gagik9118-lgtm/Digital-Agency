@@ -487,6 +487,15 @@ def process_budget(message):
 🆔 <b>ID:</b> <code>{user_id}</code>
 
 📋 <b>Услуга:</b> {user_data[user_id]['service']}
+if user_data[user_id].get('sub_service'):
+            admin_text += f"📌 <b>Подкатегория: {user_data[user_id]['sub_service']}</b>\n"
+        
+        admin_text += f"""
+💼 <b>О бизнесе:</b> {user_data[user_id]['business']}
+📝 <b>Описание:</b> {user_data[user_id]['description']}
+⏰ <b>Дедлайн:</b> {user_data[user_id]['deadline']}
+💰 <b>Бюджет:</b> {user_data[user_id]['budget']}
+
+⏱ <b>Время:</b> {datetime.now().strftime("%H:%M %d.%m.%Y")}
 """
-            if user_data[user_id].get('sub_service'):
-                admin_text += f"📌 <b>Подкатегория:
+        bot.send_message(admin_id, admin_text, parse_mode='HTML')
